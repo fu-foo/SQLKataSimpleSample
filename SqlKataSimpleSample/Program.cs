@@ -53,7 +53,7 @@ namespace Fu.SqlKataSimpleSample
 				// DB Open
 				conn.Open();
 
-				// SqlKata お約束
+				// QueryFactory作成
 				var compiler = new SqliteCompiler();
 				var db = new QueryFactory(conn, compiler);
 
