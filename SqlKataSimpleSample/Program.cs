@@ -12,28 +12,14 @@ namespace Fu.SqlKataSimpleSample
 {
 	internal class Program
 	{
-		/// <summary>
-		/// 入れ物的なクラス
-		/// </summary>
+		// 入れ物的なクラス
 		public class IDNameValue
 		{
-			/// <summary>
-			/// ID
-			/// </summary>
 			public int ID { get; set; }
-			/// <summary>
-			/// Name
-			/// </summary>
 			public string Name { get; set; }
-			/// <summary>
-			/// Value
-			/// </summary>
 			public int Value { get; set; }
 
-			/// <summary>
-			/// 結果出力用
-			/// </summary>
-			/// <returns></returns>
+			// 結果出力用
 			public override string ToString()
 			{
 				return $"ID={ID} Name={Name} Value={Value}";
@@ -60,7 +46,9 @@ namespace Fu.SqlKataSimpleSample
 				// 作成されたクエリを標準出力に出力
 				db.Logger = compiled => 
 					{
-						Console.WriteLine(compiled.ToString());
+						Console.WriteLine("■発行されたSQL");
+						Console.WriteLine("SQL:" + compiled.Sql.ToString());
+						Console.WriteLine("Parameters:" + string.Join(",",compiled.Bindings));
 					};
 
 				Console.WriteLine("■SQL発行");
@@ -87,8 +75,11 @@ namespace Fu.SqlKataSimpleSample
 				Console.WriteLine("■最終結果");
 				foreach(var idnamevalue in db.Query("IDNameValue").Get<IDNameValue>())
 				{
-					Console.WriteLine(idnamevalue);
+					Console.WriteLine(idnamevalue.ToString());
 				}
+
+				// close
+				conn.Close();
 			}
 		}
 	}
