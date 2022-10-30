@@ -3,6 +3,11 @@ using SqlKata.Compilers;
 using SqlKata.Execution;
 using System.Data.SQLite;
 
+// 実行時に「System.DllNotFoundException: DLL 'SQLite.Interop.dll' を読み込めません:指定されたモジュールが 見つかりません。 (HRESULT からの例外:0x8007007E)」
+// が出る場合は
+// packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.116.0\build\net46 の中のx64,x86フォルダーを中身(SQLite.Interop.dll)ごと
+// ビルドされたbin以下にコピーしてください。
+
 namespace Fu.SqlKataSimpleSample
 {
 	internal class Program
