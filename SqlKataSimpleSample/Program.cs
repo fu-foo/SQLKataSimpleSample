@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
-using System.Data;
 using SqlKata.Compilers;
-using SqlKata;
 using SqlKata.Execution;
 using System.Data.SQLite;
 
@@ -65,7 +58,7 @@ namespace Fu.SqlKataSimpleSample
 						Console.WriteLine(compiled.ToString());
 					};
 
-				System.Console.WriteLine("■SQL発行");
+				Console.WriteLine("■SQL発行");
 
 				// 素のSQL実行 create発行
 				db.Statement("create table IDNameValue(ID integer primary key, Name text, Value integer);");
@@ -86,10 +79,10 @@ namespace Fu.SqlKataSimpleSample
 				db.Query("IDNameValue").Where("ID", "<=", 2).Delete();
 
 				// select
-				System.Console.WriteLine("■最終結果");
+				Console.WriteLine("■最終結果");
 				foreach(var idnamevalue in db.Query("IDNameValue").Get<IDNameValue>())
 				{
-					System.Console.WriteLine(idnamevalue);
+					Console.WriteLine(idnamevalue);
 				}
 			}
 		}
